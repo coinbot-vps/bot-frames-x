@@ -1,0 +1,326 @@
+:root {
+	/* Colors */
+	--bot-darkgray: #14181b;
+	--bot-gray: #36404a;
+	--bot-blue: #33daff;
+	--bot-green: #00e676;
+	--bot-yellow: #efff48;
+	--bot-orange: #ffb129;
+	--bot-red: #ff23c0;
+}
+
+.testModeContainerRibbon { display: none !important; }
+
+/* Folder Bot
+************************************************/
+.folder-bot { height: 100vh; background-color: var(--bot-gray); display: grid; grid-template-rows: auto 1fr auto; position: relative; opacity: 1; transition: .22s ease-in-out; will-change: opacity; }
+.folder-bot * { line-height: unset; margin: 0; padding: 0; box-sizing: border-box; font-family: "Roboto"; }
+
+.folder-bot .stat-text { color: white; opacity: .5; letter-spacing: 0.075vw; font-weight: 100; }
+.folder-bot .fiat-price { margin: 0 .25rem; font-weight: 500; }
+.folder-bot .fiat-price:before { content: "$"; }
+.folder-bot .percentage-price:after { content: "%"; }
+
+
+/* Status
+************************************************/
+.folder-bot.bot-on 				{  }
+.folder-bot.bot-off 			{ filter: grayscale(1); opacity: .75; }
+.folder-bot.bot-testmode 	{  }
+
+
+/* Icons
+************************************************/
+/* __Setup__ */
+.folder-bot .folder-icon { 
+	position: relative; 
+	display: inline-block; 
+	font-weight: 300; 
+	margin: 0 2.42vw 0 5.45vw; 
+}
+
+.folder-bot .folder-icon:before { 
+
+	/* all */
+	display: inline-block; 
+	filter: invert(1); 
+	opacity: .24; 
+	position: absolute; 
+	top: 0; 
+
+	/* image icons */
+	content: ""; 
+	background-size: contain; 
+
+	/* font icons */
+	color: black; 
+	font-weight: bold;
+	font-family: "Material Icons"; 
+}
+
+
+
+/* bots */
+.folder-bot .folder-icon.icon-bot:before 				{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/icons/robot.svg"); }
+.folder-bot .folder-icon.icon-time:before 			{ content: '\e192'; }
+
+/* exchanges */
+.folder-bot.exchange-binance .folder-icon.icon-exchange:before 		{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/exchanges/icons/icon-binance-black.svg"); }
+.folder-bot.exchange-bittrex .folder-icon.icon-exchange:before 		{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/exchanges/icons/icon-bittrex-black.svg"); }
+.folder-bot.exchange-poloniex .folder-icon.icon-exchange:before 	{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/exchanges/icons/icon-poloniex-black.svg"); }
+.folder-bot.exchange-huobi .folder-icon.icon-exchange:before 			{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/exchanges/icons/icon-huobi-black.svg"); }
+.folder-bot.exchange-kucoin .folder-icon.icon-exchange:before 		{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/exchanges/icons/icon-kucoin-black.svg"); }
+
+/* markets */
+.folder-bot .folder-icon.current-value:before		{ right: 100%; }
+
+.folder-bot.market-btc .folder-icon.icon-market:before 				{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/icons/bitcoin.svg"); }
+.folder-bot.market-eth .folder-icon.icon-market:before 				{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/icons/ethereum.svg"); }
+.folder-bot.market-ltc .folder-icon.icon-market:before 				{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/icons/litecoin.svg"); }
+.folder-bot.market-usdt .folder-icon.icon-market:before 			{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/icons/usdt.svg"); }
+
+/* profit */
+.folder-bot .folder-icon.icon-arrow:before 						{ color: inherit; transform-origin: center; text-align: center; font-weight: normal; display: grid; align-items: center; justify-content: center; width: auto; height: auto; content: '\e5d8'; opacity: 1; filter: invert(0); right: auto; left: calc(100% + 4px); }
+.folder-bot .folder-icon.icon-arrow.profitup:before 	{ color: var(--bot-green); }
+.folder-bot .folder-icon.icon-arrow.profitdown:before { transform: rotate(180deg); color: var(--bot-orange); }
+
+
+/* Bot Info
+************************************************/
+.folder-bot .bot-info { display: grid; grid-template-columns: auto auto; color: white; text-transform: uppercase; background: var(--bot-darkgray); }
+.folder-bot .bot-info .item { padding: .35rem 0; justify-self: end; }
+.folder-bot .bot-info .item.folder-tab { display: block; background: var(--bot-gray); justify-self: start; position: relative; padding: .35rem 0 .35rem .5rem; z-index: 1; }
+.folder-bot .bot-info .item.folder-tab:before { background: inherit; content: ""; display: block; position: absolute; left: calc(100% - 26px); top: 0; bottom: 0; z-index: -1; width: 48px; transform: skewX(36deg); }
+
+
+/* Bot Stats
+************************************************/
+.folder-bot .bot-stats { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; padding: 0 3.03vw; line-height: 1.1; }
+
+.folder-bot .bot-stats 														{ position: relative; }
+.folder-bot .bot-stats:before 										{ content: ""; display: block; position: absolute; top: 20%; left: 0; right: 0; bottom: 5%; background-repeat: no-repeat; background-size: contain; background-position: 20% 50%; z-index: -1; opacity: .078; }
+
+.folder-bot.bot-profittrailer .bot-stats:before 	{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/bots/profittrailer.svg"); }
+.folder-bot.bot-cryptohopper .bot-stats:before  	{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/bots/cryptohopper.svg"); }
+.folder-bot.bot-eonbot .bot-stats:before  		  	{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/bots/eonbot.svg"); }
+.folder-bot.bot-gekko .bot-stats:before   		  	{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/bots/gekko.svg"); }
+.folder-bot.bot-gimmer .bot-stats:before  		  	{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/bots/gimmer.svg"); }
+.folder-bot.bot-gunbot .bot-stats:before  		  	{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/bots/gunbot.svg"); }
+.folder-bot.bot-haasbot .bot-stats:before 		  	{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/bots/haasbot.svg"); }
+
+
+/* current value */
+.folder-bot .bot-stats .current-value { grid-column: span 2; display: grid; justify-content: start; align-items: baseline; grid-template-columns: auto auto; grid-template-rows: auto auto; transform: translateY(1.81vw); margin: 0 0 0 7.27vw; }
+.folder-bot .bot-stats .current-value .market-price { color: white; font-weight: 500; }
+.folder-bot .bot-stats .current-value .fiat-price { color: var(--bot-blue); }
+.folder-bot .bot-stats .current-value .stat-text { grid-column: span 2; }
+
+
+/* profit chart */
+.folder-bot .bot-stats .profit-chart 			 { display: grid; align-items: center; justify-content: center; position: relative; }
+.folder-bot .bot-stats .profit-chart:after { content: ""; display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-repeat: no-repeat; background-size: contain; background-position: 50%; z-index: 1; opacity: 1; }
+.folder-bot .bot-stats .profit-chart:after { background-image: url("chrome-extension://__MSG_@@extension_id__/images/faux-chart.png"); }
+
+.folder-bot .bot-stats .profit-chart img,
+.folder-bot .bot-stats .profit-chart canvas { max-width: 100%; }
+
+
+/* profit stats */
+.folder-bot .bot-stats .profit-stats { display: grid; grid-template-rows: auto auto auto; align-content: center; grid-gap: 0.6vw; }
+.folder-bot .bot-stats .profit-stats p { display: grid; align-items: baseline; justify-content: end; align-content: start; grid-template-rows: auto auto; margin: 0 4.24vw 0 0; }
+.folder-bot .bot-stats .profit-stats .market-price { color: white; font-weight: 500; }
+.folder-bot .bot-stats .profit-stats .fiat-price { color: var(--bot-blue); }
+.folder-bot .bot-stats .profit-stats .stat-text { grid-column: span 2; align-self: start; justify-self: end; }
+
+.folder-bot .bot-stats .profit-stats p.profitup .fiat-price { color: var(--bot-green); }
+.folder-bot .bot-stats .profit-stats p.profitdown .fiat-price { color: var(--bot-orange); }
+
+
+
+/* Bot Settings
+************************************************/
+.folder-bot .bot-settings { 
+	background: rgba(0,0,0,.2); 
+	display: grid; 
+	grid-template-columns: auto 1fr; 
+	grid-gap: 3.03vw;
+	align-items: center;
+	justify-content: space-around;
+	padding: 2.03vw;
+}
+
+
+/* Settings Icon */
+.folder-bot .bot-settings .folder-icon 						 					  { background-color: rgba(0,0,0,.24); color: var(--bot-color-bg); margin: 0; border-radius: 100%; width: 10.9vw; height: 10.9vw; display: grid; align-items: center; justify-content: center; }
+.folder-bot .bot-settings .folder-icon img.material-icons     { filter: invert(100%); opacity: 1; }
+.folder-bot .bot-settings .folder-icon i.material-icons		 	  { color: inherit; }
+
+/* settings */
+.folder-bot .folder-icon.icon-settings { margin: 0; }
+.folder-bot .folder-icon.icon-settings:before { 
+	background-repeat: no-repeat;
+	background-size: 70%;
+	background-position: center;
+	filter: invert(0);
+	opacity: 1;
+	right: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%; 
+}
+
+.folder-bot.settings-bear .folder-icon.icon-settings:before 							{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/settings/settings-bear.svg"); }
+.folder-bot.settings-normal .folder-icon.icon-settings:before 						{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/settings/settings-normal.svg"); }
+.folder-bot.settings-bull .folder-icon.icon-settings:before 							{ background-image: url("chrome-extension://__MSG_@@extension_id__/images/settings/settings-bull.svg"); }
+
+/* Title */
+.folder-bot .bot-settings .title-container 						 						  			{ display: grid; grid-template-rows: auto 3.03vw; }
+.folder-bot .bot-settings .title-container .title 				     						{ display: grid; grid-gap: 0.6vw; grid-template-columns: auto auto; align-items: baseline; justify-content: space-between; }
+.folder-bot .bot-settings .title-container .title h3			     						{ color: white; font-weight: 400; letter-spacing: 0.02em; }
+.folder-bot .bot-settings .title-container .title .settings-type  				{ color: inherit; text-transform: uppercase; overflow: visible; }
+
+.folder-bot .bot-settings .title-container .title .settings-type:after  	{ color: inherit; text-transform: uppercase; overflow: visible; }
+
+.folder-bot.settings-bear .bot-settings .title-container .title .settings-type:after  		{ content: "Bear Settings"; }
+.folder-bot.settings-normal .bot-settings .title-container .title .settings-type:after  	{ content: "Normal Settings"; }
+.folder-bot.settings-bull .bot-settings .title-container .title .settings-type:after  		{ content: "Bull Settings"; }
+
+.folder-bot.settings-bear .bot-settings 		{ color: var(--bot-orange); }
+.folder-bot.settings-normal .bot-settings 	{ color: var(--bot-blue); }
+.folder-bot.settings-bull .bot-settings 		{ color: var(--bot-green); }
+
+/* Bar */
+.folder-bot .bot-settings .title-container .graph 			 { background: rgba(0,0,0,.24); height: 3vw; border-radius: 3.03vw; overflow: hidden; position: relative; }
+.folder-bot .bot-settings .title-container .graph .meter {
+	position: absolute;
+	top: 0;
+	right: 100%;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	transition: .22s cubic-bezier(.86,0,.07,1) 0.22s;
+	transform: translateX(0);
+}
+
+.folder-bot.settings-bear .bot-settings .title-container .graph .meter 		{ animation: BearSettings .22s cubic-bezier(.86,0,.07,1) 1s forwards; background: linear-gradient(to right, var(--bot-yellow), var(--bot-orange)); }
+.folder-bot.settings-normal .bot-settings .title-container .graph .meter 	{ animation: NormalSettings .22s cubic-bezier(.86,0,.07,1) 1s forwards; background: var(--bot-blue); }
+.folder-bot.settings-bull .bot-settings .title-container .graph .meter 		{ animation: BullSettings .22s cubic-bezier(.86,0,.07,1) 1s forwards; background: var(--bot-green); }
+
+/* Percent */
+.folder-bot .bot-settings .percent 		 			{ text-align: right; display: inline-block; font-weight: 900; color: var(--bot-mdc-theme-primary); position: relative; margin-right: 1.81vw; letter-spacing: -.04em; }
+.folder-bot .bot-settings .percent:after    { display: block; content: "%"; font-weight: 300; position: absolute; left: 100%; bottom: calc(100% - 5.45vw); }
+
+/* Animations
+************************************************/
+@keyframes BearSettings 	{ 0% { transform: translateX(0); } 100% { transform: translateX(30%); } }
+@keyframes NormalSettings { 0% { transform: translateX(0); } 100% { transform: translateX(60%); } }
+@keyframes BullSettings 	{ 0% { transform: translateX(0); } 100% { transform: translateX(80%); } }
+
+
+
+
+/* Fixes */
+#toast-container,
+.toast-message { display: none !important; }
+
+/*==============================================                                           
+####    #####  ##   ##  ##   ####  #####  
+##  ##  ##     ##   ##  ##  ##     ##     
+##  ##  #####  ##   ##  ##  ##     #####  
+##  ##  ##      ## ##   ##  ##     ##     
+####    #####    ###    ##   ####  #####  
+																						
+==============================================*/
+
+/* Xtra Small */
+@media (min-width: 0) and (max-width: 329px) {
+
+	body 		 { background-color: var(--bot-darkgray) !important; overflow: hidden !important; }
+	#wrapper { display: none !important; }
+
+	/* Font Sizes */
+	.folder-bot .stat-text 																										{ font-size: 8px;  }
+	.folder-bot .folder-icon.icon-arrow:before 																{ font-size: 16px; }
+	.folder-bot .bot-info 																										{ font-size: 9px;  }
+	.folder-bot .bot-stats .current-value .market-price 											{ font-size: 24px; }
+	.folder-bot .bot-stats .current-value .fiat-price 												{ font-size: 16px; }
+	.folder-bot .bot-stats .profit-stats .market-price 												{ font-size: 16px; }
+	.folder-bot .bot-stats .profit-stats .fiat-price 													{ font-size: 10px; }
+	.folder-bot .bot-settings .title-container .title h3			     						{ font-size: 16px; }
+	.folder-bot .bot-settings .title-container .title .settings-type  				{ font-size: 8px;  }
+	.folder-bot .bot-settings .title-container .title .settings-type:after  	{ font-size: 8px;  }
+	.folder-bot .bot-settings .percent 		 																		{ font-size: 32px; }
+	.folder-bot .bot-settings .percent:after    															{ font-size: 50%;  }
+
+	.folder-bot .folder-icon:before { 
+
+		/* all */
+		right: calc(100% + 4px); 
+	
+		/* image icons */
+		width: 14px; 
+		height: 14px; 
+	
+		/* font icons */
+		font-size: 2.5vw;
+	}
+
+	
+/* markets */
+.folder-bot .folder-icon.current-value:before		{ width: 36px; height: 36px; top: -5px; }
+}
+
+/* Mobile */
+@media (min-width: 330px) and (max-width: 768px) {
+
+	body 		 { background-color: var(--bot-darkgray) !important; overflow: hidden !important; }
+	#wrapper { display: none !important; }
+
+	/* Font Sizes */
+	.folder-bot .stat-text 																										{ font-size: 2.42vw; } /*  8px;  */
+	.folder-bot .folder-icon.icon-arrow:before 																{ font-size: 4.82vw; } /*  16px; */
+	.folder-bot .bot-info 																										{ font-size: 2.72vw; } /*  9px;  */
+	.folder-bot .bot-stats .current-value .market-price 											{ font-size: 7.27vw; } /*  24px; */
+	.folder-bot .bot-stats .current-value .fiat-price 												{ font-size: 4.82vw; } /*  16px; */
+	.folder-bot .bot-stats .profit-stats .market-price  											{ font-size: 4.82vw; } /*  16px; */
+	.folder-bot .bot-stats .profit-stats .fiat-price 													{ font-size: 3.03vw; } /*  10px; */
+	.folder-bot .bot-settings .title-container .title h3			     						{ font-size: 3.5vw; } /*  16px; */
+	.folder-bot .bot-settings .title-container .title .settings-type  				{ font-size: 2.42vw; } /*  8px;  */
+	.folder-bot .bot-settings .title-container .title .settings-type:after  	{ font-size: 2.42vw; } /*  8px;  */
+	.folder-bot .bot-settings .percent 		 																		{ font-size: 32px;   } /*  32px; */
+	.folder-bot .bot-settings .percent:after    															{ font-size: 50%;    } /*  50%;  */
+
+	.folder-bot .folder-icon:before { 
+
+		/* all */
+		right: calc(100% + 1.21vw); 
+	
+		/* image icons */
+		width: 4.24vw; 
+		height: 4.24vw; 
+	
+		/* font icons */
+		font-size: 4.24vw
+	}
+
+	.folder-bot .folder-icon.icon-time:before { width: auto; height: auto; top: -1vw; }
+
+/* markets */
+.folder-bot .folder-icon.current-value:before		{ width: 10.9vw; height: 10.9vw; top: -1.51vw; }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) { 
+
+	.folder-bot { display: none !important; }
+
+}
+
+/* Desktop */
+@media (min-width: 1025px) { 
+
+	.folder-bot { display: none !important; }
+
+}
